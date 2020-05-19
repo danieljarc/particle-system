@@ -96,7 +96,7 @@ bool GUISlider::ProcessEvent(const sf::Event& event)
         if (m_state == GUIWidgetState::Dragging)
         {
             m_state = GUIWidgetState::None;
-            OnMove(m_value);
+
             result = true;
         }
     }
@@ -124,6 +124,13 @@ bool GUISlider::ProcessEvent(const sf::Event& event)
             m_control.setPosition(newXPos, m_control.getPosition().y);
             m_fill.setSize(sf::Vector2f(newXPos - m_control.getLocalBounds().width / 2.f, m_fill.getLocalBounds().height));
             result = true;
+
+            OnMove(m_value);
+
+        }
+        else
+        {
+            m_state = GUIWidgetState::None;
         }
     }
 
